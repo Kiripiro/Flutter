@@ -19,7 +19,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void newPost(String text) {
     var post = new Post(text, widget.user.displayName);
-    savePost(post);
     post.setId(savePost(post));
     this.setState(() {
       posts.add(post);
