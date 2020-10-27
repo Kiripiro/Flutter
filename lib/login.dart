@@ -32,6 +32,14 @@ class _BodyState extends State<Body> {
         });
   }
 
+  void click1() {
+    signInWithFacebook().then((user) => {
+          this.user = user,
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => MyHomePage(user)))
+        });
+  }
+
   Widget googleLoginButton() {
     return OutlineButton(
         onPressed: this.click,
@@ -53,12 +61,38 @@ class _BodyState extends State<Body> {
             )));
   }
 
+  Widget facebookLoginButton() {
+    return OutlineButton(
+        onPressed: this.click1,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(45)),
+        splashColor: Colors.grey,
+        borderSide: BorderSide(color: Colors.grey),
+        child: Padding(
+            padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Image(image: AssetImage('assets/facebook_logo.png'), height: 35),
+                Padding(
+                    padding: EdgeInsets.only(left: 10),
+                    child: Text('Sign in with Facebook',
+                        style: TextStyle(color: Colors.grey, fontSize: 25)))
+              ],
+            )));
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Align(alignment: Alignment.center, child: googleLoginButton());
+    return Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: 24.0,
+          vertical: 30.0,
+        ),
+        child: Column(children: [googleLoginButton(), facebookLoginButton()]));
   }
-}
 
-void signOutGoogle() async {
-  await googleSignIn.signOut();
+  void signOutGoogle() async {
+    await googleSignIn.signOut();
+  }
 }
