@@ -25,27 +25,6 @@ class _SignUpPageState extends State<SignUpPage> {
         });
   }
 
-  // Widget backButton() {
-  //   return InkWell(
-  //     onTap: () {
-  //       Navigator.pop(context);
-  //     },
-  //     child: Container(
-  //       padding: EdgeInsets.symmetric(horizontal: 10),
-  //       child: Row(
-  //         children: <Widget>[
-  //           Container(
-  //             padding: EdgeInsets.only(left: 0, top: 10, bottom: 10),
-  //             child: Icon(Icons.keyboard_arrow_left, color: Colors.white),
-  //           ),
-  //           Text('Back',
-  //               style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500))
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  // }
-
   Widget loginAccountLabel() {
     return InkWell(
       onTap: () {
@@ -67,7 +46,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   color: Colors.white),
             ),
             SizedBox(
-              width: 10,
+              width: 5,
             ),
             Text(
               'Login',
@@ -119,7 +98,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         borderSide: BorderSide(
                       color: Colors.white,
                     )),
-                    hintText: 'Enter Username',
+                    hintText: 'Username',
                     hintStyle: TextStyle(color: Colors.white.withOpacity(0.6)),
                     focusColor: Colors.white,
                     focusedBorder: UnderlineInputBorder(
@@ -155,7 +134,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         borderSide: BorderSide(
                       color: Colors.white,
                     )),
-                    hintText: 'Enter Email',
+                    hintText: 'Email',
                     hintStyle: TextStyle(color: Colors.white.withOpacity(0.6)),
                     focusColor: Colors.white,
                     focusedBorder: UnderlineInputBorder(
@@ -253,7 +232,6 @@ class _SignUpPageState extends State<SignUpPage> {
         ),
         Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            //backButton(),
             emailPasswordSignUp(),
             loginAccountLabel(),
           ]),

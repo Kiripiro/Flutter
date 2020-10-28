@@ -20,7 +20,7 @@ class _TextInputWidgetState extends State<TextInputWidget> {
 
   void click() {
     FocusScope.of(context).unfocus();
-    widget.callback(controller.text);
+    if (controller.text != '') widget.callback(controller.text);
     controller.clear();
   }
 

@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'myHomePage.dart';
 import 'auth.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+//import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'sign_up_email.dart';
 
 class LoginPage extends StatelessWidget {
@@ -54,61 +54,22 @@ class _BodyState extends State<Body> {
 
   Widget googleLoginButton() {
     return new Container(
-        margin: const EdgeInsets.only(bottom: 10),
-        child: RaisedButton(
-            onPressed: this.clickEventGoogleSignIn,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(45)),
-            splashColor: Colors.white,
-            child: Column(mainAxisSize: MainAxisSize.min, children: [
-              Padding(
-                  padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Image(
-                          image: AssetImage('assets/google_logo.png'),
-                          height: 35),
-                      Padding(
-                          padding: EdgeInsets.only(left: 10),
-                          child: Text('| Sign in with Google',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20)))
-                    ],
-                  )),
-            ])));
+      margin: const EdgeInsets.only(bottom: 10),
+      child: IconButton(
+        onPressed: this.clickEventGoogleSignIn,
+        icon: Image(image: AssetImage('assets/google_logo.png'), height: 35),
+      ),
+    );
   }
 
   Widget facebookLoginButton() {
     return new Container(
-        margin: const EdgeInsets.only(bottom: 10),
-        child: RaisedButton(
-          onPressed: this.clickEventFacebookSignIn,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(45)),
-          splashColor: Colors.white,
-          child: Padding(
-              padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Image(
-                      image: AssetImage('assets/facebook_logo.png'),
-                      height: 35),
-                  Padding(
-                      padding: EdgeInsets.only(left: 10),
-                      child: Text('| Sign in with Facebook',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20)))
-                ],
-              )),
-        ));
+      margin: const EdgeInsets.only(bottom: 10),
+      child: IconButton(
+        onPressed: this.clickEventFacebookSignIn,
+        icon: Image(image: AssetImage('assets/facebook_logo.png'), height: 45),
+      ),
+    );
   }
 
   Widget emailPasswordSignIn() {
@@ -148,7 +109,7 @@ class _BodyState extends State<Body> {
                         borderSide: BorderSide(
                       color: Colors.white,
                     )),
-                    hintText: 'Enter Email',
+                    hintText: 'Email',
                     hintStyle: TextStyle(color: Colors.white.withOpacity(0.6)),
                     focusColor: Colors.white,
                     focusedBorder: UnderlineInputBorder(
@@ -209,11 +170,12 @@ class _BodyState extends State<Body> {
                       margin: const EdgeInsets.fromLTRB(0, 0, 10, 10),
                       child: FlatButton(
                         onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      SignUpPage())); //LINK REMEMBER ME
+                          print("oui");
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (context) =>
+                          //             SignUpPage())); //LINK REMEMBER ME
                         },
                         color: Color.fromRGBO(255, 255, 255, 0),
                         child: Text(
@@ -231,7 +193,7 @@ class _BodyState extends State<Body> {
                       margin: const EdgeInsets.fromLTRB(0, 0, 10, 10),
                       child: FlatButton(
                         onPressed: () {
-                          print("oui"); //LINK PAGE RESET PASSWORD
+                          print("non"); //LINK PAGE RESET PASSWORD
                         },
                         color: Color.fromRGBO(255, 255, 255, 0),
                         child: Text(
@@ -251,40 +213,28 @@ class _BodyState extends State<Body> {
               InkWell(
                   child: Container(
                       margin: const EdgeInsets.only(bottom: 10),
-                      child: RaisedButton(
+                      child: FlatButton(
                         onPressed: this.clickEventEmailSignIn,
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(45)),
+                            side: BorderSide(color: Colors.white),
+                            borderRadius: BorderRadius.circular(10)),
                         splashColor: Colors.white,
+                        color: Colors.transparent,
                         child: Padding(
-                            padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                            padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
-                                Icon(FontAwesomeIcons.solidEnvelope, size: 35),
-                                Padding(
-                                    padding: EdgeInsets.only(left: 10),
-                                    child: Text('| Login with Email',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 20)))
+                                Text('Login',
+                                    style: TextStyle(
+                                        fontSize: 20, color: Colors.white))
                               ],
                             )),
                       ))),
             ],
           ),
-        ),
-        // Container(
-        //   width: double.infinity,
-        //   padding: EdgeInsets.all(30.0),
-        //   color: Colors.black.withOpacity(0.2),
-        //   child: Text(
-        //     'DON\'T HAVE AN ACCOUNT? SIGN UP',
-        //     textAlign: TextAlign.center,
-        //     style: TextStyle(color: Colors.orange, fontWeight: FontWeight.w700),
-        //   ),
-        // ),
+        )
       ],
     );
   }
@@ -294,51 +244,51 @@ class _BodyState extends State<Body> {
   //       child: Padding(
   //     padding: EdgeInsets.symmetric(horizontal: 28.0, vertical: 40.0),
   //     child: Container(
-  //       // decoration: BoxDecoration(
-  //       //   color: Colors.white.withOpacity(0.25),
-  //       //   borderRadius: BorderRadius.circular(45.0),
-  //       // ),
-  //       child: Padding(
-  //         padding: const EdgeInsets.all(8.0),
-  //         child: Column(
-  //           children: <Widget>[
-  //             Icon(
-  //               FontAwesomeIcons.key,
-  //               color: Colors.deepOrangeAccent,
-  //               size: 50.0,
-  //             ),
-  //             Row(
-  //               mainAxisAlignment: MainAxisAlignment.center,
-  //               children: <Widget>[
-  //                 Text(
-  //                   'Lé',
-  //                   style: TextStyle(
-  //                     fontSize: 38.0,
-  //                     fontWeight: FontWeight.bold,
-  //                     color: Color.fromRGBO(240, 156, 81, 1),
-  //                   ),
-  //                 ),
-  //                 Text(
-  //                   'on',
-  //                   style: TextStyle(
-  //                     fontSize: 38.0,
-  //                     fontWeight: FontWeight.bold,
-  //                     color: Colors.white,
-  //                   ),
-  //                 ),
-  //               ],
-  //             ),
-  //             Text(
-  //               'blablabla',
-  //               style: TextStyle(
-  //                 color: Colors.white,
-  //                 fontSize: 18.0,
-  //               ),
-  //               textAlign: TextAlign.center,
-  //             ),
-  //           ],
-  //         ),
+  //       decoration: BoxDecoration(
+  //         color: Colors.white.withOpacity(0.25),
+  //         borderRadius: BorderRadius.circular(45.0),
   //       ),
+  // child: Padding(
+  //   padding: const EdgeInsets.all(8.0),
+  //   child: Column(
+  //     children: <Widget>[
+  //       Icon(
+  //         FontAwesomeIcons.key,
+  //         color: Colors.deepOrangeAccent,
+  //         size: 50.0,
+  //       ),
+  //       Row(
+  //         mainAxisAlignment: MainAxisAlignment.center,
+  //         children: <Widget>[
+  //           Text(
+  //             'Lé',
+  //             style: TextStyle(
+  //               fontSize: 38.0,
+  //               fontWeight: FontWeight.bold,
+  //               color: Color.fromRGBO(240, 156, 81, 1),
+  //             ),
+  //           ),
+  //           Text(
+  //             'on',
+  //             style: TextStyle(
+  //               fontSize: 38.0,
+  //               fontWeight: FontWeight.bold,
+  //               color: Colors.white,
+  //             ),
+  //           ),
+  //         ],
+  //       ),
+  //       Text(
+  //         'blablabla',
+  //         style: TextStyle(
+  //           color: Colors.white,
+  //           fontSize: 18.0,
+  //         ),
+  //         textAlign: TextAlign.center,
+  //       ),
+  //     ],
+  //   ),
+  // ),
   //     ),
   //   ));
   // }
@@ -357,14 +307,14 @@ class _BodyState extends State<Body> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'Already have an account ?',
+              'Don\'t have an account ?',
               style: TextStyle(
                   fontSize: 13,
                   fontWeight: FontWeight.w600,
                   color: Colors.white),
             ),
             SizedBox(
-              width: 10,
+              width: 5,
             ),
             Text(
               'Sign up.',
@@ -392,13 +342,34 @@ class _BodyState extends State<Body> {
             ),
           ),
         ),
-        Align(alignment: Alignment.topCenter),
-        //child: SafeArea(child: upperText())),
+        // Align(
+        //     alignment: Alignment.topCenter,
+        //     child: SafeArea(child: upperText())),
         Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             emailPasswordSignIn(),
-            googleLoginButton(),
-            facebookLoginButton(),
+            Row(children: [
+              Expanded(
+                child: Container(
+                  margin: const EdgeInsets.only(left: 35.0, right: 10.0),
+                  child: Divider(color: Colors.white),
+                ),
+              ),
+              Text(
+                'OR',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600),
+              ),
+              Expanded(
+                  child: Container(
+                      margin: const EdgeInsets.only(left: 10.0, right: 35.0),
+                      child: Divider(color: Colors.white))),
+            ]),
+            Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [googleLoginButton(), facebookLoginButton()]),
             signUpAccountLabel()
           ]),
         )
