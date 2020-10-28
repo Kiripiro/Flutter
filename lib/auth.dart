@@ -5,7 +5,9 @@ import 'package:http/http.dart' as http;
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final GoogleSignIn googleSignIn = GoogleSignIn();
-final FacebookLogin facebookLogin = FacebookLogin();
+final FacebookLogin facebookLogIn = FacebookLogin();
+
+//GOOGLE
 
 Future<FirebaseUser> signInWithGoogle() async {
   final GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
@@ -28,8 +30,10 @@ Future<FirebaseUser> signInWithGoogle() async {
   return user;
 }
 
+//FACEBOOK
+
 Future<FirebaseUser> signInWithFacebook() async {
-  final result = await facebookLogin.logIn(['email']);
+  final result = await facebookLogIn.logIn(['email']);
   final token = result.accessToken.token;
   final graphResponse = await http.get(
       'https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name,email&access_token=$token');
@@ -45,5 +49,39 @@ Future<FirebaseUser> signInWithFacebook() async {
   final FirebaseUser currentUser = await _auth.currentUser();
   assert(currentUser.uid == user.uid);
 
+  return user;
+}
+
+// EMAIL
+
+Future<FirebaseUser> signUpWithEmail(
+    String email, String password, String name) async {
+  final AuthResult authResult = await _auth.createUserWithEmailAndPassword(
+      email: email, password: password);
+  final FirebaseUser user = authResult.user;
+  assert(!user.isAnonymous);
+  assert(await user.getIdToken() != null);
+
+  final FirebaseUser currentUser = await _auth.currentUser();
+  assert(currentUser.uid == user.uid);
+
+  //Update Username
+  UserUpdateInfo userUpdateInfo = new UserUpdateInfo();
+  userUpdateInfo.displayName = name;
+  user.updateProfile(userUpdateInfo);
+
+  return user;
+}
+
+Future<FirebaseUser> signInWithEmail(String em, String pw) async {
+  final AuthResult authResult =
+      await _auth.signInWithEmailAndPassword(email: em, password: pw);
+  final FirebaseUser user = authResult.user;
+  assert(!user.isAnonymous);
+  assert(await user.getIdToken() != null);
+
+  final FirebaseUser currentUser = await _auth.currentUser();
+  assert(currentUser.uid == user.uid);
+  print(user.displayName);
   return user;
 }
